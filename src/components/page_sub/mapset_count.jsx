@@ -70,7 +70,6 @@ function AppStatistik() {
                       <div 
                         className='overlay2 rad5 align-middle d-flex flex-column  justify-content-center align-items-center' 
                         style={{
-                          height:'25vh',
                           height: isMobile ? '150px' : '25vh',
                           backgroundColor:'#E65100'}}
                       >
@@ -87,7 +86,6 @@ function AppStatistik() {
                       <div 
                         className='overlay2 rad5 align-middle d-flex flex-column  justify-content-center align-items-center' 
                         style={{
-                          height:'25vh',
                           height: isMobile ? '150px' : '25vh',
                           backgroundColor:'#01579B'}}
                       >
@@ -104,7 +102,6 @@ function AppStatistik() {
                       <div 
                         className='overlay2 rad5 align-middle d-flex flex-column  justify-content-center align-items-center' 
                         style={{
-                          height:'25vh',
                           height: isMobile ? '150px' : '25vh',
                           backgroundColor:'#AD1457'}}
                       >
@@ -122,7 +119,6 @@ function AppStatistik() {
                       <div 
                         className='overlay2 rad5 align-middle d-flex flex-column  justify-content-center align-items-center' 
                         style={{
-                          height:'25vh',
                           height: isMobile ? '150px' : '25vh',
                           backgroundColor:'#00695C'}}
                       >
@@ -139,7 +135,6 @@ function AppStatistik() {
                       <div 
                         className='overlay2 rad5 align-middle d-flex flex-column  justify-content-center align-items-center' 
                         style={{
-                          height:'25vh',
                           height: isMobile ? '150px' : '25vh',
                           backgroundColor:'#6A1B9A'}}
                       >
