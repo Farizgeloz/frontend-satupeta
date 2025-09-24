@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkopendata_backend_prabulinggih=self.webpackChunkopendata_backend_prabulinggih||[]).push([[1538],{91538:(a,e,b)=>{b.r(e),b.d(e,{build:()=>n.b});b(73398),b(65058),b(56289),b(21390),b(86955),b(27374),b(70367),b(2687);var n=b(29228)}}]);
