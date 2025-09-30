@@ -1374,7 +1374,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                           }
                         </p>
                         <p className="mb-1">
-                          <strong>Satker:</strong>{' '}
+                          <strong>Opd:</strong>{' '}
                           {
                             detailsatkerku.map((data, index) => (
                               <span key={index}>

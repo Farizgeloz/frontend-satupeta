@@ -16,10 +16,17 @@ import { FaDownload } from "react-icons/fa6";
 const apiurl = import.meta.env.VITE_API_URL;
 
 const Spinner = () => 
-    <div className="height-map">
-      <div className="loaderr2"></div>
-      <p className="margin-auto text-center text-silver">Dalam Proses...</p>
-    </div>;
+  <div className='text-center justify-content-center' style={{height:"110px"}}>
+      <div className="dot-overlay mt-5" >
+          <div className="dot-pulse">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          
+      </div>
+    <p className='text-center text-shadow-border-multicolor-smooth italicku'>Proses ...</p>
+  </div>;
 
 
 const koleksiOptions = [
@@ -305,7 +312,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                                     style={{ height: '30vh',cursor: 'pointer',overflow:"hidden" }}
                                   >
                                     <Image
-                                      src={data.presignedUrl_a}
+                                      src={data.presignedUrl_tumb_a}
                                       className='shaddow3 rad10'
                                       style={{ height: '30vh',width:"100%",cursor: 'pointer' }}
                                       onContextMenu={(e) => e.preventDefault()}
@@ -324,7 +331,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                                     >
                                       {data.title.length > 70 ? data.title.slice(0, 70) + '...' : data.title}
                                     </p>
-                                    <Link to={`/Artikel/${slugify(data.title)}`} 
+                                    <Link to={`/Artikel/Detail/${slugify(data.title)}`} 
                                       className={`text-white-a textsize10 p-2 rad10`}
                                       style={{backgroundColor:bgcontentku}}
                                     >Baca Selengkapnya </Link>

@@ -15,7 +15,7 @@ function AppStatistik() {
 
   const [count_mapset, setCountMapset] = useState("");
   const [count_mapsetpublik, setCountMapsetPublik] = useState("");
-  const [count_mapset_satker, setCountMapset_Satker] = useState("");
+  const [count_mapset_satker, setCountMapset_Opd] = useState("");
   const [count_mapset_tipe, setCountMapset_Tipe] = useState("");
   const [count_mapset_sektor, setCountMapset_sektor] = useState("");
 
@@ -40,7 +40,7 @@ function AppStatistik() {
       //console.log('DATA DARI BACKEND:', response3.data);
       setCountMapset(data3.count_mapset);
       setCountMapsetPublik(data3.count_mapsetpublik);
-      setCountMapset_Satker(data3.count_mapset_satker);
+      setCountMapset_Opd(data3.count_mapset_satker);
       setCountMapset_Tipe(data3.count_mapset_tipe);
       setCountMapset_sektor(data3.count_mapset_sektor);
 
@@ -108,7 +108,7 @@ function AppStatistik() {
                         <FaBuildingColumns className='align-middle mt-2 mb-0' style={{width:'40px',height:'40px',color:"#F48FB1"}} />
                         <div className='text-center px-2'>
                           <p className='textsize24 text-white text-shaddow font_weight800  mb-0 '>{count_mapset_satker}</p>
-                          <p className='textsize16 text-white font_weight600 mb-2 italicku' style={{lineHeight: '18px'}}>Satker</p>
+                          <p className='textsize16 text-white font_weight600 mb-2 italicku' style={{lineHeight: '18px'}}>Opd</p>
                           
                         </div>
                           

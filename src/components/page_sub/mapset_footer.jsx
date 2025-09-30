@@ -85,7 +85,6 @@ function AppFooter({ bgfooterku, visitor_today, visitor_month, visitor_year, vis
 
   return (
     <Container fluid className=" p-3 mb-0" style={{backgroundColor:bgfooterku}}>
-      <iframe className='w-100 bg-white shaddow3 p-3 rad15 ' title="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9402.474234141997!2d113.40938301209272!3d-7.762924977704708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7005af3181627%3A0x4b033c7ae3a4880e!2sKantor%20Bupati%20Probolinggo!5e0!3m2!1sid!2sid!4v1746818580876!5m2!1sid!2sid" height="450px"></iframe>
       <Row className='px-5'>
         <Col sm={12}>
           

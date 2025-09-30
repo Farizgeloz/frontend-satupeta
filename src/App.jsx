@@ -28,7 +28,7 @@ function App() {
           <Route path="/Tematik/Mapset/Map-Interaktif/Geomap/:locationParam" element={<HalMapsetBatasWilayah />} />
           <Route path="/Topik/:topik" element={<HalMapset />} />
           <Route path="/Artikel" element={<HalMapsetArtikel />} />
-           <Route path="/Artikel/:id" element={<HalMapsetArtikelDetail />} />
+           <Route path="/Artikel/Detail/:id" element={<HalMapsetArtikelDetail />} />
            <Route path="/Tentang" element={<HalBantuan />} />
         </Routes>
       </Router>

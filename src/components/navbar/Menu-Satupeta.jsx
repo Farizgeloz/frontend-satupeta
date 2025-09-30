@@ -47,8 +47,8 @@ function MenuItem({title,submenu,linked}){
           <Link aria-expanded="false" role="button" className={color2 ? 'dropdown-toggle nav-link textsize12 font_weight600 text-light uppercaseku' : 'dropdown-toggle nav-link textsize10 font_weight600 text-light uppercaseku'} to="#">{title}</Link>
           <div data-bs-popper="static" className="dropdown-menu" aria-labelledby="">
             {
-              menuku2.map((item)=>(
-                 <Link key={item.id} to={item.linked} className="nav-link">{item.sub_menu}</Link>
+              menuku2.map((item,index)=>(
+                 <Link key={index} to={item.linked} className="nav-link">{item.sub_menu}</Link>
               ))
              }
           </div>

@@ -1,9 +1,9 @@
 // PopupIklan.js
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
-const apiurl=import.meta.env.VITE_API_URL;
+const apiurl = import.meta.env.VITE_API_URL;
 
 const PopupIklan = () => {
   const [show, setShow] = useState(false);
@@ -48,15 +48,13 @@ const PopupIklan = () => {
   const getData = async () => {
     try {
       const response = await axios.get(apiurl + 'api/open-item/satupeta-iklan');
-      const data = response.data;
+      const data = response.data.resultWithUrls;
       if (Array.isArray(data) && data.length > 0) {
         const item = data[0]; // Ambil item pertama
-        //console.log('DATA DARI :', item.title);
 
         setTitle(item.title);
-        setContent_a(item.content_a);
-        setLinkDownload(item.link_download);
-        setImages_a(item.presignedUrl_a);
+        setLinkDownload(item.linked);
+        setImages_a(item.presignedUrl);
       } else {
         console.warn("Data kosong atau bukan array");
       }
@@ -82,7 +80,7 @@ const PopupIklan = () => {
       className="iklan-modal mt-4 overflow-scroll-auto"
       keyboard={false}
     >
-      <Modal.Body className="p-0 position-relative border-1 shaddow4 p-2 rad10" style={{ minHeight: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center',backgroundColor:'#ffffffeb' }}>
+      <Modal.Body className="p-0 position-relative border-1 shaddow4 p-2 rad10" style={{ minHeight: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center',backgroundColor:'#ffffffeb' }}>
         {/* Tombol Close Custom */}
         <Button
           variant="dark"

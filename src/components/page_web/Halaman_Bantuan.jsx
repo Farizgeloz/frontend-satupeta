@@ -69,7 +69,7 @@ function Dashboard() {
   
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <div className="spinner-overlay justify-content-center">
           
           <div 
@@ -108,7 +108,7 @@ function Dashboard() {
         >
         </motion.div>
       )
-      }
+      } */}
       <div className={`App bg-body-${settings.bg_body}`}>
         <Menu bgku={settings.bg_header}/>
         <main className='mt-10'>

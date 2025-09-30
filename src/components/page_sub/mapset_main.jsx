@@ -402,10 +402,10 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                   >
                     {dataku.map((data, index) => {
-                      let link = `/Tematik/Mapset/${data.id_maplist}`;
+                      let link = `/Tematik/Mapset/${slugify(data.title)}`;
 
                       const isi = (
-                        <Row className="justify-content-center  d-flex" style={{ cursor: "pointer" }}>
+                        <Row key={index} className="justify-content-center  d-flex" style={{ cursor: "pointer" }}>
                           <Col sm={12} className="py-2">
                             <Image
                               src={data.presignedUrl}
@@ -428,7 +428,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                       );
 
                       return (
-                        <SwiperSlide key={data.id}>
+                        <SwiperSlide key={data.id_maplist}>
                           <div className={`portfolio-wrapper rad15 px-2 ${activeIndex === index ? `bg-white` : ''}`}>
                             {data.koleksi_data === "Peta Layout" ? (
                               <div onClick={() => handleShowModal(data)}>{isi}</div>
@@ -520,10 +520,10 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                       .filter((data) => data.koleksi_data === 'Peta Interaktif')
                       .slice(0, 4)
                       .map((data) => {
-                        let link = `/Tematik/Mapset/${data.id_maplist}`;
+                        let link = `/Tematik/Mapset/${slugify(data.title)}`;
 
                         return (
-                          <Col sm={6} md={3} lg={3} xs={6} key={data.id} className="py-2 col-6">
+                          <Col sm={6} md={3} lg={3} xs={6} key={data.id_maplist} className="py-2 col-6">
                             <div className="portfolio-wrapper rad15 bg-white shaddow4">
                               <Link
                                 to={link}
@@ -655,7 +655,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                       .slice(0, 4)
                       .map((data) => {
                         return (
-                          <Col sm={6} md={3} lg={3} xs={6} key={data.id} className="py-2 col-6">
+                          <Col sm={6} md={3} lg={3} xs={6} key={data.id_maplist} className="py-2 col-6">
                             <div className='portfolio-wrapper rad15 bg-white shaddow4'>
                                 <div
                                   className='justify-content-center'
@@ -754,7 +754,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
               viewport={{ once: true }}
             >
               
-              <Container fluid className={`rad15 text-center justify-content-center  bg-silver`}> 
+              <Container fluid className={`rad15 text-center justify-content-center  bg-silver`} style={{marginBottom:"5%"}}> 
                  
                 <Row className='portfoliolist justify-content-md-center p-2'>
                    <Col sm={10} xs={7} className='py-2'>
@@ -780,9 +780,9 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                     {
                       dataartikelku
                       .slice(0, 3)
-                      .map((data) => {
+                      .map((data,index) => {
                         return (
-                          <Col sm={12} md={4} lg={4} xs={12} key={data.id} className='py-2 col-6'>
+                          <Col sm={12} md={4} lg={4} xs={12} key={index} className='py-2 col-6'>
                             <div className='rad15 shaddow4 bg-white'>
                                 <div
                                   className='justify-content-center'
@@ -792,7 +792,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                                     style={{ maxHeight: '260px',cursor: 'pointer' }}
                                   >
                                     <Image
-                                      src={data.presignedUrl_a}
+                                      src={data.presignedUrl_tumb_a}
                                       className='shaddow3 rad10 w-100'
                                       style={{ maxHeight: '260px',cursor: 'pointer',overflow:'hidden' }}
                                       onContextMenu={(e) => e.preventDefault()}
@@ -817,7 +817,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                                         {data.content_a.length > 120 ? data.content_a.slice(0, 120) + '...' : data.content_a}
                                       </p>
                                     </div>
-                                    <Link to={`/Artikel/${slugify(data.title)}`} 
+                                    <Link to={`/Artikel/Detail/${slugify(data.title)}`} 
                                       className={`text-white-a textsize10 p-2 rad10`}
                                       style={{backgroundColor:bgcontentku}}
                                       >Baca Selengkapnya </Link>

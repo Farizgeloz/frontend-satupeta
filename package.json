@@ -84,6 +84,5 @@
     "@arcgis/core": {
       "sideEffects": false
     }
-  },
-  "homepage": "https://farizgeloz.github.io/frontend-satupeta"
+  }
 }

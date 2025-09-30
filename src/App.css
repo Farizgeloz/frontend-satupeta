@@ -1591,6 +1591,14 @@ border-bottom: 1px solid #fff;
   margin:0px auto;
   
 }
+.img-marker{
+  width: 80%;
+  max-width:80%;
+  height:auto;
+  margin:0px auto;
+  
+}
+
 
 #basic-navbar-nav{
   /*justify-content: center !important;*/

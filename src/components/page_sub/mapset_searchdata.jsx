@@ -16,10 +16,17 @@ import { FaDownload } from "react-icons/fa";
 const apiurl = import.meta.env.VITE_API_URL;
 
 const Spinner = () => 
-    <div className="height-map">
-      <div className="loaderr2"></div>
-      <p className="margin-auto text-center text-silver">Dalam Proses...</p>
-    </div>;
+  <div className='text-center justify-content-center' style={{height:"110px"}}>
+      <div className="dot-overlay mt-5" >
+          <div className="dot-pulse">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          
+      </div>
+    <p className='text-center text-shadow-border-multicolor-smooth italicku'>Proses ...</p>
+  </div>;
 
 
 const koleksiOptions = [
@@ -120,8 +127,6 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
       .toLowerCase()
       .trim()
       .replace(/\s+/g, '-')        // Ganti spasi dengan strip (-)
-      .replace(/[^\w\-]+/g, '')    // Hapus karakter non-kata
-      .replace(/\-\-+/g, '-');     // Hapus strip ganda
   };
   
 
@@ -493,7 +498,7 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                     <>
                     {
                       sortedData.map((data) => {
-                       let link = `/Tematik/Mapset/${data.id_maplist}`;
+                       let link = `/Tematik/Mapset/${slugify(data.title)}`;
                         return (
                           <Col sm={4} md={4} lg={4} key={data.id_maplist} className='py-2 col-6'>
                             <div className='portfolio-wrapper rad15  bg-white shaddow1 p-2'>

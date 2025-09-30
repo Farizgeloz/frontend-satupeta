@@ -31,10 +31,18 @@ import 'swiper/css/pagination';
 
 
 const Spinner = () => 
-    <div className="height-map">
-      <div className="loaderr2"></div>
-      <p className="margin-auto text-center text-silver">Dalam Proses...</p>
-    </div>;
+  <div className='text-center justify-content-center' style={{height:"80vh"}}>
+      <div className="dot-overlay" style={{marginTop:'20vh'}} >
+          <div className="dot-pulse">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          
+      </div>
+    <p className='text-center italicku'>Proses ...</p>
+  </div>;
+
 
 const apiurl = import.meta.env.VITE_API_URL;
 
@@ -63,13 +71,14 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
   };
 
   useEffect(() => {
-    
+    setLoading(true);
     setTimeout(() => {
       getDataById();
       getData();
       setLoading(false);
     }, 1000); 
-  }, []);
+  }, [id]);
+  
 
 
   const getDataById = async () => {
@@ -251,65 +260,115 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
       </Row>
       
       <Col md={9} className="px-5">
-        <p 
-          className="textsize24 font_weight600 uppercaseku" style={{lineHeight:"1.2",marginTop:"30px",color:colortitleku}}
-        >{dataku.title}</p>
-        <div className="d-flex mb-4">
-          <p className="mb-0 textsize14 text-silver font_weight600 italicku">Admin {dataku.nick_admin}  <FaMinus className="mx-2" />  </p>
-          <p className="mb-0 textsize14 text-silver font_weight600 italicku">{convertDate(dataku.updated_at?.replace(/T/, ' ')?.replace(/\.\w*/, ''))}</p>
-        </div>
-        <Image
-          src={dataku.presignedUrl_a}
-          className="rad10 w-100 mt-3 mb-3"
-          onContextMenu={(e) => e.preventDefault()}
-          draggable={false} 
-        />
-        {dataku && typeof dataku.content_a === 'string' ? (
-          <div className="textsize12">
-            {dataku.content_a.split('\n').map((line, index) => (
-              <p className="mb-0" key={index}>{line}</p>
-            ))}
-          </div>
-        ) : ("")}
-        <Image 
-          src={dataku.presignedUrl_b} 
-          className="rad10 w-70 mt-3 mb-3"
-          onContextMenu={(e) => e.preventDefault()}
-          draggable={false} 
-        />
-        {typeof dataku?.content_b === "string" && dataku.content_b ? (
-          <div className="textsize12">
-            {dataku.content_b.split('\n').map((line, index) => (
-              <p className="mb-0" key={index}>{line}</p>
-            ))}
-          </div>
-        ) : ("")}
-        <Image 
-          src={dataku.presignedUrl_c} 
-          className="rad10 w-70 mt-3 mb-3"
-          onContextMenu={(e) => e.preventDefault()}
-          draggable={false} 
-        />
-        {dataku && typeof dataku.content_c === 'string' ? (
-          <div className="textsize12">
-            {dataku.content_c.split('\n').map((line, index) => (
-              <p className="mb-0" key={index}>{line}</p>
-            ))}
-          </div>
-        ) : ("")}
-        {typeof dataku?.sumber === "string" && dataku.sumber ? (
-          <p className="mt-5 mb-0 textsize12 font_weight600">Sumber: <span className="font_weight400">{dataku.sumber}</span></p>
-        ) : ("")}
-        {dataku.download_file && dataku.download_file.length >= 3 ? (
-          <Link
-            to={dataku.presignedUrl_download}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-success"
+        {loading ? (
+          <Spinner />
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: true }}
           >
-            <FaDownload /> Download File
-          </Link>
-        ) : null}
+            <p 
+              className="textsize24 font_weight600 uppercaseku" style={{lineHeight:"1.2",marginTop:"30px",color:colortitleku}}
+            >{dataku.title}</p>
+            <div className="d-flex mb-4">
+              <p className="mb-0 textsize14 text-silver font_weight600 italicku">Admin {dataku.nick_admin}  <FaMinus className="mx-2" />  </p>
+              <p className="mb-0 textsize14 text-silver font_weight600 italicku">{convertDate(dataku.updated_at?.replace(/T/, ' ')?.replace(/\.\w*/, ''))}</p>
+            </div>
+            {dataku.presignedUrl_a && (
+              <motion.img
+                src={dataku.presignedUrl_a}
+                alt="[Foto]"
+                className="rad10 w-100"
+                onLoad={() => setLoading(false)} // ✅ selesai load → ubah state
+                initial={{ opacity: 0 }}
+                animate={
+                  loading
+                    ? { opacity: [0.1, 1, 0.1] } // 🔄 animasi berdenyut kalau loading
+                    : { opacity: [0.1, 0.5, 1] }              // ✅ tampil normal setelah loaded
+                }
+                transition={
+                  loading
+                    ? { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    : { duration: 3.5 }
+                }
+              />
+            )}
+            {dataku && typeof dataku.content_a === 'string' ? (
+              <div className="textsize12">
+                {dataku.content_a.split('\n').map((line, index) => (
+                  <p className="mb-0" key={index}>{line}</p>
+                ))}
+              </div>
+            ) : ("")}
+            {dataku.presignedUrl_b && (
+              <motion.img
+                src={dataku.presignedUrl_b}
+                alt="[Foto]"
+                className="rad10 w-100"
+                onLoad={() => setLoading(false)} // ✅ selesai load → ubah state
+                initial={{ opacity: 0 }}
+                animate={
+                  loading
+                    ? { opacity: [0.1, 1, 0.1] } // 🔄 animasi berdenyut kalau loading
+                    : { opacity: [0.1, 0.5, 1] }              // ✅ tampil normal setelah loaded
+                }
+                transition={
+                  loading
+                    ? { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    : { duration: 3.5 }
+                }
+              />
+            )}
+            {typeof dataku?.content_b === "string" && dataku.content_b ? (
+              <div className="textsize12">
+                {dataku.content_b.split('\n').map((line, index) => (
+                  <p className="mb-0" key={index}>{line}</p>
+                ))}
+              </div>
+            ) : ("")}
+            {dataku.presignedUrl_c && (
+              <motion.img
+                src={dataku.presignedUrl_c}
+                alt="[Foto]"
+                className="rad10 w-100"
+                onLoad={() => setLoading(false)} // ✅ selesai load → ubah state
+                initial={{ opacity: 0 }}
+                animate={
+                  loading
+                    ? { opacity: [0.1, 1, 0.1] } // 🔄 animasi berdenyut kalau loading
+                    : { opacity: [0.1, 0.5, 1] }              // ✅ tampil normal setelah loaded
+                }
+                transition={
+                  loading
+                    ? { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    : { duration: 3.5 }
+                }
+              />
+            )}
+            {dataku && typeof dataku.content_c === 'string' ? (
+              <div className="textsize12">
+                {dataku.content_c.split('\n').map((line, index) => (
+                  <p className="mb-0" key={index}>{line}</p>
+                ))}
+              </div>
+            ) : ("")}
+            {typeof dataku?.sumber === "string" && dataku.sumber ? (
+              <p className="mt-5 mb-0 textsize12 font_weight600">Sumber: <span className="font_weight400">{dataku.sumber}</span></p>
+            ) : ("")}
+            {dataku.download_file && dataku.download_file.length >= 3 ? (
+              <Link
+                to={dataku.presignedUrl_download}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-success"
+              >
+                <FaDownload /> Download File
+              </Link>
+            ) : null}
+          </motion.div>
+        )}  
       </Col>
       <Col md={3}>
         <p className="textsize12 text-center mt-5">Bagikan :</p>
@@ -323,9 +382,9 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
             {
               dataartikelku
               .slice(0, 4)
-              .map((data) => {
+              .map((data,index) => {
                 return (
-                    <div className=' px-4'>
+                    <div className=' px-4' key={index}>
                         <div
                           className='justify-content-center rad15 bg-white mb-2 p-2'
                         >
@@ -350,10 +409,10 @@ function AppTeams({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcontentku
                             >
                               {data.title.length > 70 ? data.title.slice(0, 70) + '...' : data.title}
                             </p>
-                            <a href={`/Artikel/${slugify(data.title)}`} 
-                              className={` text-white-a textsize12 p-2 rad10`}
+                            <Link to={`/Artikel/Detail/${slugify(data.title)}`} 
+                              className={` text-white-a textsize10 p-2 rad10`}
                               style={{backgroundColor:bgcontentku}}
-                            >Baca Selengkapnya </a>
+                            >Baca Selengkapnya </Link>
                           </div>
                         </div>
                     </div>

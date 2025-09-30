@@ -636,7 +636,7 @@ function AppTeams() {
                       <p className='mt-0'>{detailku.nama_location}</p>
                     </Col>
                     <Col md={12} sm={12} className=' rad10'>
-                      <p className='mt-0 mb-0 font_weight600'>Satker :</p>
+                      <p className='mt-0 mb-0 font_weight600'>Opd :</p>
                     </Col>
                     <Col md={12} sm={12} className=''>
                       <p className='mt-0'>{detailku.nama_satker}</p>

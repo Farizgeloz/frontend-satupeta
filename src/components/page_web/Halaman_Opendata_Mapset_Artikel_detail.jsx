@@ -87,7 +87,7 @@ function DatasetPengelolah() {
   
   return (
     <>
-    {loading ? (
+    {/* {loading ? (
       <div className="spinner-overlay justify-content-center">
         
         <div 
@@ -126,7 +126,7 @@ function DatasetPengelolah() {
       >
       </motion.div>
     )
-  }
+  } */}
     <div className={`App`}  style={{ backgroundColor:`${settings.bg_body}`}}>
       <Menu bgku={settings.bg_header}/>
       <main className=' px-0'>

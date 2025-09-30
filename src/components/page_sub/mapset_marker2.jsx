@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import axios from "axios";
 import qs from "qs";
@@ -315,6 +315,7 @@ const MapsetMarker2 = ({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcont
   const [desa, setdesa] = useState([]);
   const [kunci, setkunci] = useState("");
   const { locationParam } = useParams(); // ?locationParam=1,2,3
+  const navigate = useNavigate();
   const [userLocation, setUserLocation] = useState(null);
 
   const [image1, setImage1] = useState(null);
@@ -723,14 +724,21 @@ const MapsetMarker2 = ({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcont
       koleksiku.length > 0 &&
       koleksi.length === 0
     ) {
-      const idParams = locationParam.split(',').map(Number);
+      const idParams = locationParam.split(',');
       const selectedOptions = koleksiku.filter(loc =>
-        idParams.includes(loc.id_maplist)
+        idParams.includes(loc.title)
       );
       setKoleksi(selectedOptions);
       didSetFromParamsRef.current = true; // ✅ tandai sudah dijalankan
     }
   }, [locationParam, koleksiku, koleksi.length]);
+
+  useEffect(() => {
+    if (koleksi && koleksi.length > 0) {
+      const ids = koleksi.map((loc) => loc.title).join(",");
+      navigate(`/Tematik/Mapset/Map-Interaktif/Marker/${ids}`);
+    }
+  }, [koleksi, navigate]);
 
   return (
     <>
@@ -966,9 +974,10 @@ const MapsetMarker2 = ({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcont
                 style={{marginTop:"30px"}}
                 onChange={(event, newValue) => {
                   setKoleksi(newValue);
+                  
                 }}
                 isOptionEqualToValue={(option, value) =>
-                  option.id_maplist === value.id_maplist
+                  option.title === value.title
                 }
                 renderOption={(props, option, { selected }) => (
                   <li
@@ -1150,7 +1159,7 @@ const MapsetMarker2 = ({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcont
             className="position-fixed py-1 px-3"
             style={{
               width: "40vh",
-              top: isMobile ? 150 : 100, // ⬅️ otomatis ganti top sesuai layar
+              top: isMobile ? 170 : 100, // ⬅️ otomatis ganti top sesuai layar
               left: isMobile ? 10 : 20,
               
               zIndex: 701,
@@ -1204,7 +1213,7 @@ const MapsetMarker2 = ({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcont
                   '&::-webkit-scrollbar': {
                     display: 'none',
                   },
-                  maxHeight: isMobile ? "55vh" : "55vh", // ⬅️ otomatis ganti top sesuai layar
+                  maxHeight: isMobile ? "35vh" : "45vh", // ⬅️ otomatis ganti top sesuai layar
                 }}
                 >
                 
@@ -1248,7 +1257,7 @@ const MapsetMarker2 = ({ bgku,bgbodyku,bgtitleku,bgcontentku,bgcontentku2,bgcont
                     }
                   </p>
                   <p className="mb-1">
-                    <strong>Satker:</strong>{' '}
+                    <strong>OPD:</strong>{' '}
                   </p>
                   <p className="mb-1 font_weight800 bg-border2 bg-white rad10 p-2" style={{color:colortitleku}}>
                     {
